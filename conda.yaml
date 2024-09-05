@@ -1,8 +1,10 @@
-name: mlflow-test
+name: mlflow_project
 channels:
-  - conda-forge
+  - defaults
 dependencies:
-  - pip=22.0.4
-  - python=3.8.12
+  - numpy>=1.14.3
+  - pandas>=1.0.0
+  - scikit-learn>0.19.1
+  - pip
   - pip:
-    - mlflow==1.25.1
+    - mlflow
