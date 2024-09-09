@@ -69,13 +69,12 @@ if __name__ == "__main__":
         p = pathlib.Path('./data')
         p.mkdir(parents=True, exist_ok=True)
 
-        pd.DataFrame(X_train).to_csv('./data/X_train.csv')
-        pd.DataFrame(X_test).to_csv('./data/X_test.csv')
-        pd.DataFrame(X_val).to_csv('./data/X_val.csv')
-        pd.DataFrame(y_train).to_csv('./data/y_train.csv')
-        pd.DataFrame(y_test).to_csv('./data/y_test.csv')
-        pd.DataFrame(y_val).to_csv('./data/y_val.csv')
-    
+
+        pd.DataFrame(train_x).to_csv('./data/train_x.csv')
+        pd.DataFrame(test_x).to_csv('./data/test_x.csv')
+        pd.DataFrame(train_y).to_csv('./data/train_y.csv')
+        pd.DataFrame(test_y).to_csv('./data/test_y.csv')
+
         mlflow.log_artifact("./data/")
 
         mlflow.sklearn.log_model(lr, "model")
