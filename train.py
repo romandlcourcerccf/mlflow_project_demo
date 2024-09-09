@@ -15,6 +15,8 @@ from sklearn.linear_model import ElasticNet
 import mlflow
 import mlflow.sklearn
 
+import pathlib 
+
 
 def eval_metrics(actual, pred):
     rmse = np.sqrt(mean_squared_error(actual, pred))
@@ -62,5 +64,18 @@ if __name__ == "__main__":
         mlflow.log_metric("rmse", rmse)
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
+
+        
+        p = pathlib.Path('./data')
+        p.mkdir(parents=True, exist_ok=True)
+
+        pd.DataFrame(X_train).to_csv('./data/X_train.csv')
+        pd.DataFrame(X_test).to_csv('./data/X_test.csv')
+        pd.DataFrame(X_val).to_csv('./data/X_val.csv')
+        pd.DataFrame(y_train).to_csv('./data/y_train.csv')
+        pd.DataFrame(y_test).to_csv('./data/y_test.csv')
+        pd.DataFrame(y_val).to_csv('./data/y_val.csv')
+    
+        mlflow.log_artifact("./data/")
 
         mlflow.sklearn.log_model(lr, "model")
